@@ -1,0 +1,46 @@
+doctype html
+// Объявление формата документа
+html
+  head
+    // Техническая информация о документе
+    meta(charset='UTF-8')
+    // Определяем кодировку символов документа
+    title .
+    // Задаем заголовок документа
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/modal.css')
+  body
+    .circle-wrapper
+      .circle
+        p#total_calories.total_calories 0
+    div
+      a( onclick='showBreakfastForm()')
+        .block.breakfast
+          p#total_calories.meal + ЗАВТРАК
+      // Modal content
+      .modal(id='myModal')
+        .modal-content
+            span.close ×
+            h1.line Завтрак
+            .dropdown
+                button.dropbtn.line(onclick='myFunction()') Выбрать продукт...
+                #myDropdown.dropdown-content
+                    input#myInput(type='text', placeholder='Search..', onkeyup='filterFunction()')
+                    a(href='#about') Банан
+                    a(href='#base') Яблоко
+                    a(href='#blog') Сырники
+            div.line        
+              label(for="weight") Weight      
+              input(id="weight")       
+            button.line#send(onclick='addBreakfast()') Add    
+
+      a(href='')
+        .block.breakfast
+          p#total_calories.meal + ОБЕД
+      a(href='')
+        .block.breakfast
+          p#total_calories.meal + УЖИН
+      a(href='')
+        .block.breakfast
+          p#total_calories.meal + ПЕРЕКУС
+script(src='/javascripts/app.js')

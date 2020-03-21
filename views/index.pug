@@ -1,0 +1,23 @@
+extends layout
+block layout-content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Breakfast
+        // register form
+        form(method='POST' action='/addBreakfast')
+          div.form-group
+            select(name='dish')
+                option(value="banana") banana
+                option(value="apple") apple
+          div.form-group 
+            label(for='weight') Weight:
+            input#weight.form-control(placeholder='weight' name='weight')
+          div.form-group
+            label(for='favoriteBook') Favorite Book:
+            input#favoriteBook.form-control(type='text', placeholder='title of book' name='favoriteBook')
+          button.btn.btn-primary(type='submit') Save
+        select(name='dishmain')
+                option(value="banana") banana
+                option(value="apple") apple 
+        button(type='button' value="Add breakfast" onclick='addBreakfast()')         
