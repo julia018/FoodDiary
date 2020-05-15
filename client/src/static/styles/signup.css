@@ -1,0 +1,104 @@
+#signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  
+  margin-top: 5vh;
+  margin-bottom: 20vh;
+}
+
+#signup #signupHeading {
+  margin:1em 0;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#signup .inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:360px;
+  height: 100px;
+}
+
+
+.inputField .inputFieldLabel {
+    margin-right: auto;
+    margin-left: 15px;
+    font-size: 0.9em;
+}
+
+.inputField input {
+  padding: 10px 25px;
+  width: 200px;
+  margin-right: 15px;
+  border: 1px solid black;
+}
+
+.inputField select {
+  padding: 10px 25px;
+  width: 200px;
+  margin-right: 15px;
+  border: 1px solid black;
+}
+
+#signup #inputFieldSpecial {display: flex; align-items: center;  margin: 5vh 0;}
+#genderMiddle {}
+
+#femaleLabel, #maleLabel {
+  position: absolute;
+  top: -40%;
+}
+
+#maleLabel {
+  right: 45%;
+}
+
+#tap {
+  font-size: 1em;
+  width: 360px;
+  text-align: center;
+  
+  margin:5vh 0;
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+}
+.flex-inner-wrapper {
+  display: inherit;
+  flex-flow: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+}
+
+#maleCheck {
+  margin-right: 3em;
+}
+#femaleCheck {
+  margin-right: 3em;
+}
+#femaleCheck,#maleCheck {
+position: relative;
+  margin-left: 3em;
+}
+
+input[type=radio] {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: 0px;
+  z-index: 5;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+}
+
+#signup .signupSubmit {
+  cursor: pointer;
+  margin-top:4em;
+  padding: 10px 50px;
+  border: 1px solid black;
+  background: white;
+}
+

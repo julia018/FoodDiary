@@ -1,0 +1,285 @@
+.mealItemOptions .foodMenuOpen {
+  display: block;
+}
+
+#foodContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+}
+
+#foodContainer #calorieSummary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: calc(100vh - 70px);
+  margin-right: 10vw;
+  margin-left: 10vw;
+}
+
+#calorieSummary #datePicker {
+  margin: 2em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#datePicker #dateNext, #datePicker #datePrevious {
+  cursor: pointer;
+}
+
+#datePicker #dateNext {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+#datePicker #date {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 1em;
+}
+
+ .divider {
+  width: 100%;
+  height: 1px;
+  background-color: #D9D4D4;
+}
+
+.divider:nth-child(odd) {
+  margin-bottom: 1em;
+}
+
+.divider {
+  margin-top: 1em;
+}
+
+#calorieSummary #circles {
+ margin:2em 0;
+}
+
+#calorieSummary .calorieCircle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 175px;
+}
+
+
+#circles > div:nth-child(2) {
+  margin-left: 2em
+}
+
+#calorieSummary #circles {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.calorieCircle span, .calorieCircle span {
+  margin-bottom: 1em;
+}
+
+/* solution found on sof and is not mine https://stackoverflow.com/questions/46059398/css-flex-overflow-and-center */
+#food::before , 
+#food::after {
+  content:'';
+  flex:1;
+}
+/* solution above */
+
+#food {
+  width: 40%;
+  display: flex;
+ 
+  align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height:50%;
+  margin: 0 auto;
+  margin-top: 1.5em;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+}
+
+
+#food .mealType {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 2em;
+}
+
+.mealType .mealTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin-bottom: 1em;
+}
+
+.mealTitle .mealName {
+  font-size: 36px;
+  font-weight: 500;
+  margin-right: auto;
+}
+
+.mealTitle .mealAddFood {
+  background: #F2F2F2;
+  padding: 8px 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-top: 8px;
+  color: black;
+  }
+
+.mealItem .centerMealItem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mealItem .mealItemName {
+  font-size: 1.1em;
+  width: 50%;
+  padding-right: 0.5em;
+}
+
+
+.centerMealItem .mealItemCalories {
+  width: calc(50% - 70px);
+  text-align: center;
+}
+
+.mealItem .mealItemOptions {
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  width: 70px;
+  position: relative;
+  display:inline-flex;
+}
+
+.dropdown {
+  z-index: 15;
+  width: 100%;
+  text-align: center;
+}
+
+.dropdownContainer {
+  position: relative;
+  display: inline-flex;
+  width: 70px;
+  text-align: center;
+}
+
+
+.dropdownContent {
+  position: absolute;
+  right: 0%;
+  top: 40px;
+  width: 70px;
+  z-index: 20;
+  display: flex;
+  display: none;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #333333;
+  height: 100px;
+  text-align: center;
+  background: white;
+ 
+
+}
+
+
+.dropdownContent a, .dropdownContent span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: 0.4em;
+  font-weight: 400;
+  color: black;
+}
+
+/*.dropdownContainer:hover .dropdownContent {
+  display: block;
+}*/
+
+.dropdownContent a:hover, .dropdownContent span:hover {
+  background: #f2f2f2;
+}
+
+@media screen and (max-width: 1000px) {
+  #foodContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: auto;
+  }
+  
+  #foodContainer #calorieSummary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 60%;
+    margin:auto 0 auto 0;
+    height: auto;
+    min-height: 500px;
+    max-height: 500px;
+  }
+  
+  #food {
+    width: 100%;
+    margin:0 auto;
+    padding-bottom: 10vh;
+    overflow: auto;
+  }
+    #foodContainer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    #foodContainer #calorieSummary {
+      width: 90%;
+      margin:0 auto;
+      height: 60vh;
+      margin-top: 10vh;
+    }
+    
+    #calorieSummary .calorieCircle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 130px;
+      margin-right: 2em;
+      margin-left: 1.5em;
+      font-size: 1em;
+      text-align: center;
+    }
+    
+    
+  .mealTitle .mealName { font-size: 24px; }
+  .mealItem .mealItemName { font-size: 16px; }
+  .mealItem .centerMealItem {margin: 0.5em 0;}
+  #tip {text-align: center;}
+    
+  
+}
+
+

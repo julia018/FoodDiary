@@ -1,0 +1,74 @@
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #D9D4D4;
+  }
+
+#foodSearchContainer {
+  margin-top: 10vh;
+}
+
+#foodSearchContainer #searchContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#foodSearchContainer #searchContainer * {
+  margin-bottom: 5vh;
+}
+
+#searchContainer #search {
+  border: 1px solid black;
+  padding: 10px 25px;
+  background: white;
+}
+
+#searchContainer label {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+#searchContainer #foodQuery {
+  border: 1px solid black;
+  padding: 15px 25px;
+  background: white;
+}
+#foodsearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw !important;
+  margin-bottom: 10vh;
+}
+  .food {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 10px;
+      width: 80vw;
+      max-width: 900px;
+      min-width: 340px;
+      height: 10vh;
+      cursor: pointer;
+      font-size: 0.9em;
+      text-decoration: none;
+    }
+
+  .food:nth-child(odd) {
+    background: #f2f2f2;
+  }
+
+  .food .foodItem {
+    width: 100%;
+    color: black;
+  }
+
+  .food .foodItem:hover {
+    opacity: 0.4;
+  }

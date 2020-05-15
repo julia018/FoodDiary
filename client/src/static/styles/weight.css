@@ -1,0 +1,124 @@
+#weight {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#weight #currentWeight {
+  display: flex;
+  flex-direction: column;
+}
+
+#currentWeight #currentWeightHeading ,#currentWeight  #currentGoalWeight {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+#weight #newWeightContainer {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+}
+
+#newWeightContainer #weightImage {
+  width: 200px;
+  height: 200px;
+}
+
+#newWeightContainer #currentWeightLabel {
+  text-align: center;
+  font-weight: 500;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}
+
+#weight #personContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+#newWeightContainer #newWeight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 80px;
+  font-weight: 500;
+  margin-left: 5em;
+}
+
+#newWeight #newWeightInput {
+  border: 1px solid black;
+  background: white;
+  padding: 10px 10px;
+  width: 55%;
+  margin-left: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+#newWeightContainer #newWeightSubmit {
+  text-align: center;
+  margin-top: 8em;
+  border: 1px solid black;
+  background: white;
+  padding: 10px 0;
+  width: 22.5%;
+  margin-left: 35%;
+  margin-right: 35%;
+  
+}
+
+
+@media screen and (max-width: 768px) {
+  #weight {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-top: 10vh;
+  }
+  
+  
+  #newWeightContainer #newWeightSubmit {
+    margin: 0 auto 4em;
+    width: 30%;
+  }
+  
+  #newWeightContainer {
+  
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #newWeightContainer #newWeight {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 4em;
+   margin-bottom: 2em;
+   margin-left: 0 !important;
+   width: 100%;
+  }
+  
+  #newWeight #newWeightInput {
+    width: 30%;
+    text-align: center;
+    margin: 2em auto 0.5em;
+  }
+  
+  
+  
+}

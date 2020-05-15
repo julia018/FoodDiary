@@ -1,0 +1,107 @@
+#mood {
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mood #moodForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#moodForm #moodHeading {
+  font-size: 2em;
+  font-weight: bold;
+  
+  margin-bottom: 5vh;
+}
+
+#moodForm #moodImage {
+  height: 20vh;
+  width: auto;
+  
+  margin-bottom: 5vh;
+}
+
+#moodRange #moodRangeText {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+  width: 250px;
+}
+
+#moodRange #moodRangeText span:first-child {
+  margin-right: auto;
+  margin-left: -0.3em;
+}
+
+#moodRange #moodRangeText span:nth-child(2) {
+  margin-right: auto;
+  margin-left: 1em;
+}
+
+#moodRange #moodRangeText span:nth-child(3) {
+  margin-left: auto;
+  margin-right: 0.5em;
+}
+
+
+#moodRange #moodRangeContainer {
+  display: flex;
+  min-width: 100px;
+  
+  margin-bottom: 5vh;
+} 
+
+#moodRangeContainer .moodRangeBox {
+  border: 1px solid black;
+  height:16px;
+  width: 17px;
+  margin-right: 0.5em;
+}
+
+#moodRangeContainer .red {
+  background: #F26B6B;
+}
+
+#moodRangeContainer .blue {
+  background: #5690FF;
+}
+
+#moodRangeContainer .green {
+  background: #0FE34B;
+}
+
+#moodForm #moodValue {
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  padding: 0;
+  margin-bottom: 5vh;
+  border: 1px solid black;
+  text-align: center;
+}
+
+#moodForm .moodSubmit {
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+  width: 130px;
+}
+
+@media screen and (max-width: 490px) {
+  #moodForm #moodHeading {
+    font-size: 1.8em;
+  }
+  
+  #moodForm #moodValue {
+    width: 45px;
+  }
+}

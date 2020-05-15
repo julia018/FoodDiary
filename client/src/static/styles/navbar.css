@@ -1,0 +1,225 @@
+#nav #navMobileButton, #nav #navMobileLinks { display: none; }
+#nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 100vw;
+
+  padding: 0 20px;
+  background: #5690FF;
+  font-weight: 600;
+  color: white;
+  z-index: 10000;
+}
+
+#nav #navHeading {
+  margin-right: auto;
+  font-size: 22px;
+}
+
+#nav #navHeading a, #navLinks .navLink {color: white;}
+#navLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#navLinks .navLink {
+  border-bottom: 1px solid transparent;
+  margin-right: 1em;
+  font-size: 20px;
+}
+
+#navLinks .login {
+  margin-right: 2em;
+}
+
+#navLinks .navLink:hover {
+  border-bottom: 1px solid white;
+}
+
+#navLinks .signup {
+  padding: 6px 25px;
+  width: 35%;
+  background: white;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 1.5em;
+  margin-left: 1em;
+}
+
+#navLinks .login {
+  padding: 6px 25px;
+  text-align: center;
+  background: #0FE34B;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+
+  #userDropdownButton {
+    background: #333333;
+    border: 1px solid #333333;
+    border-radius: 50%;
+  }
+
+  #userDropdownMobile {
+    margin-bottom: 2em;
+  }
+
+
+  #nav { padding: 0 25px;}
+  #nav #navLinks { display: none; }
+  #nav #navMobileButton {
+    display: flex;
+    font-weight: 400;
+  } 
+  #nav #navMobileLinks { 
+    z-index: 1000;
+    background: white;
+    position: absolute;
+    top: 70px;
+    height: calc(100vh - 70px);
+    width: 100vw;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+  }
+
+  #nav #navMobileButton {
+    cursor: pointer;
+    font-size: 2.2em;
+  }
+
+  #navMobileLinks .navMobileLink {
+    border-bottom: 1px solid transparent;
+    color: black;
+    font-size: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  #navMobileLinks .navMobileLink:first-of-type {
+    margin-top: 1em;
+  }
+
+  #navMobileLinks .signup {
+    padding: 6px 25px;
+    background: white;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    width: 120px;
+    border: 1px solid black;
+    margin-bottom: 1em;
+  }
+  
+  #navMobileLinks .login {
+    padding: 6px 25px;
+    text-align: center;
+    background: #0FE34B;
+    font-weight: bold;
+    width: 120px;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 5vh;
+  }
+  
+  #navMobileLinks .navMobileLink:hover {
+    border-bottom: 1px solid black;
+  }
+
+  #navMobileLinks .navMobileLink:last-child { margin-bottom: 3.3em; }
+
+}
+
+@media screen and (max-width: 490px) {
+  #nav #navMobileButton {
+    cursor: pointer;
+    font-size: 1.6em;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#userDropdownMobile, #userDropdown {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+}
+
+
+#dropdownContentMobile, #dropdownContent {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  border: none;
+  cursor: pointer;
+  border: 1px solid #333333;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background: white;
+
+}
+
+#dropdownContentMobile form, #dropdownContent form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+}
+
+#dropdownContentMobile a,#dropdownContentMobile input, #dropdownContent a, #dropdownContent input {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: black;
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+#dropdownContent input {height: 100%;}
+
+#userDropdownMobile:hover, #userDropdown:hover {
+  cursor: pointer;
+}
+
+
+#dropdownContentMobile a:hover ,#dropdownContent a:hover ,#dropdownContent input:hover,#dropdownContentMobile input:hover{
+background: #f2f2f2;
+}
+
+ #userDropdownButtonMobile,  #userDropdownButton {
+  width: 50px;
+  display: flex;
+  margin: 0 auto;
+}
+
+#dropdownContent {
+  display: flex;
+  display: none;
+  flex-direction: column;
+}

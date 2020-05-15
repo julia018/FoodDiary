@@ -1,0 +1,20 @@
+#ErrorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: calc(100vh - 70px);
+  width: 100vw;
+
+}
+
+#ErrorPage #error404 {
+  font-size: 3em;
+  margin-bottom: 0.2em;
+  font-weight: bold;
+}
+
+#ErrorPage #errorPageNotFound {
+  font-size: 2em;
+}

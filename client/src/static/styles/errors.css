@@ -1,0 +1,35 @@
+#errors {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 500px;
+  width: 300px;
+
+  margin: 3em auto;
+
+
+  z-index: 1000;
+}
+
+#errors .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FF6666;
+  max-width: 400px;
+  min-height: 50px;
+  margin-top: 1em;
+  padding: 1em;
+  box-sizing: border-box;
+  color: white;
+  font-weight: 600;
+}
+
+.error .errorClose {
+  margin-left: auto;
+  cursor: pointer;
+}

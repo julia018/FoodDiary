@@ -1,0 +1,70 @@
+#login {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#login #loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  
+  margin-bottom: 10vh;
+}
+
+#loginForm #loginHeading {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 5vh;
+}
+
+#loginForm .inputField {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:360px;
+  height: 100px;
+}
+
+.inputField .inputFieldLabel {
+    margin-right: auto;
+    margin-left: 15px;
+    font-size: 0.9em;
+}
+
+.inputField input {
+  padding: 10px 25px;
+  width: 200px;
+  margin-right: 15px;
+  border: 1px solid black;
+  background: white;
+}
+
+
+#loginForm #forgotPassword {
+  color: purple;
+  margin-top: 1em;
+  margin-bottom: 2.5em;
+  cursor: pointer;
+}
+
+#loginForm .loginSubmit {
+  cursor: pointer;
+  padding: 10px 25px;
+  width: 150px;
+  margin-right: 15px;
+  border: 1px solid black;
+  background: white;
+}
+
+
+@media screen and (max-width: 490px) {
+  #login #loginForm {
+    margin-bottom: 18vh;
+  }
+}

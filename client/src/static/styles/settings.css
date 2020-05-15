@@ -1,0 +1,47 @@
+#settings {
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  width: 300px;
+  margin:0 auto;
+  margin-top:10vh;
+}
+#settings #settingsHeading {
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 2em;
+}
+#settingsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#settingsForm *{
+  margin-bottom: 1em;
+}
+
+#settingsForm input {
+  padding: 10px;
+  border-radius: none;
+  border: 1px solid #f1f1f1;
+  background: #f8f8f8;
+  cursor: not-allowed;
+}
+
+#settingsForm input[type = number] {
+  background: white;
+  cursor: pointer;
+}
+
+#settings #settingsSubmit {
+  background: white;
+  padding: 10px 20px;
+  margin:0 auto;
+  text-align: center;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-top: 2em;
+  margin-bottom: 5em;
+}
