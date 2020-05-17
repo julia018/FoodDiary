@@ -24,6 +24,32 @@ router.route("/weight")
     });
   });
 
+  router.route("/weight/progress").post((req, res) => {
+  
+    db.connect(async (err, client, release) => {
+      if (err) {
+        console.error("Error acquiring client", err.stack);
+        return res.json(400, {errors:["Failed to find your weight."]})
+      }
+      try {
+        let {rows} = await client.query("select date, weight from weight where weight.userId = $1 order by weight.date;", [req.User.userId])
+        let dateWeight = []
+        rows = rows.forEach(el => {
+          el.date = new Date(el.date).getTime()
+          dateWeight.push(el)
+        })
+        const json = JSON.stringify(dateWeight)
+        console.log("server")
+        console.log(dateWeight)
+        release();
+        return res.json(json);
+      } catch(e) {
+          console.error(e); 
+          return res.json(400, {errors:["Failed to find your weight."]})
+      }
+    });
+  });
+
 router.post("/weight/date/:date", [
   check("weight").isNumeric().toFloat().withMessage("Weight must be a Number."),
 ], (req, res) => {
