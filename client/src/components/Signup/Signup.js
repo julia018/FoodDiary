@@ -1,10 +1,9 @@
 import React from "react";
 import "../../static/styles/signup.css";
-import male from "../../static/images/app.svg";
-import female from "../../static/images/dogwoman.svg";
+import male from "../../static/images/man.svg";
+import female from "../../static/images/woman.svg";
 import submitForm from "../../helpers/Form";
 import CalorieSlider from "../CalorieSlider/CalorieSlider"
-
 
 
 class Signup extends React.Component {
@@ -57,9 +56,8 @@ class Signup extends React.Component {
 
 
   getCalorieNorm = async () => {
-    console.log("HHH" + this.state.height);
     console.log("Gender " + this.state.genderSelected)
-    const res = await fetch(`/calorieNorm`, {
+    await fetch(`/calorieNorm`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -76,10 +74,11 @@ class Signup extends React.Component {
       .then((res) => {
         console.log("All " + res);
         console.log("Norm " + res.norm);
-        console.log("Delta " + res.dela);
+        console.log("Delta " + res.delta);
         this.setState({
           calorieNorm: res.norm,
-          progress: res.progress
+          progress: res.progress,
+          delta: res.delta
         }, function () {
           this.setCalorieValue()
           console.log("Progress changed" + this.state.progress)
@@ -90,20 +89,46 @@ class Signup extends React.Component {
 
   setCalorieDisabled = (cond) => {
     this.slider.current.changeDisabled(cond);
-    console.log(this.state.height);
     if (cond === false) this.changeCalorieNorm();
+  }
+
+  countCalorieBounds(){
+      let deviation = Math.round(this.state.calorieNorm * this.state.delta);
+      return deviation
   }
 
   setCalorieValue = () => {
     console.log("Setting calorie value for slider!!!")
-    let cnorm = this.state.calorieNorm;
-    this.slider.current.configureSlider(this.state.calorieNorm, 5, this.state.calorieNorm - 250, this.state.calorieNorm + 250,
+    let cnorm = Math.round(this.state.calorieNorm);
+    let deviation = this.countCalorieBounds();
+    let minCalorie = cnorm - deviation;
+    let maxCalorie = cnorm + deviation;
+    console.log("Deviation "+ deviation)
+    this.slider.current.configureSlider(cnorm, 5, minCalorie, maxCalorie,
       {
         [cnorm]: {
           style: {
-            color: 'red',
+            padding: '5px',
+            color: 'green',
+            width: '70px'
           },
-          label: <strong>{Math.round(cnorm)}</strong>,
+          label: <span><strong>{cnorm}</strong><br/>norm for keeping weight</span>,
+        },
+        [minCalorie]: {
+          style: {
+            padding: '15px',
+            color: '#FCB830',
+            width: '80px'
+          },
+          label: <span><strong>{minCalorie}</strong><br/>value for safe weight loss</span>,
+        },
+        [maxCalorie]: {
+          style: {
+            padding: '15px',
+            color: 'red',
+            width: '80px'
+          },
+          label: <span><strong>{maxCalorie}</strong><br/>value for safe weight gane</span>,
         }
       });
 
@@ -120,10 +145,11 @@ class Signup extends React.Component {
 
   setStateValue = (e, fieldName) => {
     if (fieldName) {
+      console.log("Setting field "+ fieldName)
+      console.log("Setting value =  "+ e.target.value)
       this.setState({ [fieldName]: e.target.value }, function () {
         this.setCalorieDisability();
       });
-      //console.log("Set state" + e.target.value + "   " + fieldName);
     } else {
       this.setCalorieDisability()
     }
@@ -134,9 +160,6 @@ class Signup extends React.Component {
   }
 
   setTime = () => {
-    console.log("Check time")
-    console.log("goalweight " + this.state.goalWeight)
-    console.log("progress " + this.state.progress)
 
     if (this.state.goalWeight && this.state.progress) {
       console.log("Check time +++")
@@ -166,12 +189,18 @@ class Signup extends React.Component {
     }
   }
 
+  scrollToTop() {
+    window.scrollTo(0, 0);
+}
+
   render() {
     const maleSelected = this.state.genderSelected === "Male" ? { background: "#b9f2ff", padding: "15px" } : { background: "white", padding: "0px" };
     const femaleSelected = this.state.genderSelected === "Female" ? { background: "lightpink", padding: "15px" } : { background: "white", padding: "0px" };
     return (
 
-      <form method="POST" onSubmit={async (e) => await submitForm(
+      <form method="POST" onSubmit={async (e) => {
+        this.scrollToTop()
+        await submitForm(
         e,
         "POST",
         "/signup",
@@ -189,11 +218,11 @@ class Signup extends React.Component {
           weight: this.state.weight,
           height: this.state.height,
           goalWeight: this.state.goalWeight,
-          calorieGoal: this.state.calorieGoal
+          calorieGoal: this.slider.current.getValue()
         },
         this.props.updateErrors,
         (result) => { }
-      )} id="signup" >
+      )}} id="signup" >
 
 
         <h2 id="signupHeading">Sign Up</h2>
@@ -264,27 +293,19 @@ class Signup extends React.Component {
           <input onChange={(e) => this.setStateValue(e, "goalWeight")} required type="number" step="1" min="40" max="300" name="goalWeight" placeholder="Goal Weight" />
         </div>
 
-
-        {/*<div className="inputField">
-          <label className="inputFieldLabel">Calorie Goal</label>
-          <input onChange={(e) => this.setState({calorieGoal:e.target.value}) } required type="number" step="50" min="1000" max="20000" name="calorieGoal" placeholder="Calorie Goal" />
-      </div>*/}
-
-        {/*<div id="slider" className="inputField" style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
-          <CalorieSlider ref={this.slider} />
-    </div>*/}
-
         <div className="inputField">
           <label className="inputFieldLabel">Calorie Goal</label>
-          <CalorieSlider className="slider" ref={this.slider} onChange={(e) => this.setState({ calorieGoal: e.target.value })} />
+          <CalorieSlider className="slider" ref={this.slider}  onChange={(e) => {
+            console.log("slider valuechanged")
+            this.setState({calorieGoal: e.target.value})}}/>
         </div>
 
-        <div className="inputField">
-          <label className="inputFieldLabel">Estimated time</label>
+        <div className="inputField time">
+          <label className="inputFieldLabel">Estimated time<br/>(safely)</label>
           <input name="Time" placeholder="0" readOnly ref={this.time} />
         </div>
-
-        <input type="submit" value="Sign Up" className="signupSubmit" />
+               
+        <input type="submit" value="Sign Up" className="signupSubmit"/>
       </form>
     );
   }

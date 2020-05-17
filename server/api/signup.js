@@ -18,6 +18,7 @@ router.post("/signup",[
   check("genderSelected").isString(),
   check("age").isInt().withMessage("Age must be an Integer"),
   check("weight").isNumeric().toFloat().withMessage("Weight must be a Number."),
+  check("height").isNumeric().toFloat().withMessage("Height must be a Number."),
   check("goalWeight").isNumeric().toFloat().withMessage("Goal Weight must be a Number."),
   check("calorieGoal").isInt().withMessage("Calorie Goal must be a Integer"),
 ], (req, res) => {
@@ -45,7 +46,7 @@ router.post("/signup",[
     if(month < 9) { month = "0" + (month + 1).toString(); } else {month = (month+1).toString();}
     if(day < 10) { day = "0" + (day).toString() } else {day = day.toString()};
     const date = `${year}${month}${day}`;
-    const {email, firstName, lastName, genderSelected, age, weight, goalWeight, calorieGoal} = req.body;
+    const {email, firstName, lastName, genderSelected, age, weight, height, goalWeight, calorieGoal} = req.body;
 
     const {rows} = await client.query("select email from \"user\" where email = $1 ;", [email]);
     if(rows.length >= 1) { release(); return res.status(422).json({ errors: ["Email already exists."] }); }
@@ -54,9 +55,11 @@ router.post("/signup",[
     const hash = bcrypt.hashSync(req.body.password, salt);
     const userId = uuid.v4();
 
+    console.log("Height " + height)
+
     await client.query(
-      "insert into \"user\" (userId, first_name, last_name, email, password, gender, age, goalWeight, dateJoined, calorieGoal) values ($1, $2, $3, $4, $5, $6, $7, $8, to_date($9,'YYYYMMDD'), $10);", 
-      [userId, firstName, lastName, email, hash, genderSelected, parseInt(age), parseFloat(goalWeight), date, parseFloat(calorieGoal) ]);
+      "insert into \"user\" (userId, first_name, last_name, email, password, gender, age, goalWeight, dateJoined, calorieGoal, height) values ($1, $2, $3, $4, $5, $6, $7, $8, to_date($9,'YYYYMMDD'), $10, $11);", 
+      [userId, firstName, lastName, email, hash, genderSelected, parseInt(age), parseFloat(goalWeight), date, parseFloat(calorieGoal), parseFloat(height) ]);
 
     await client.query(
       "insert into weight (userId, weight, date) values ($1, $2, to_date($3,'YYYYMMDD'));",

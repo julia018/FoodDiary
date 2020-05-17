@@ -1,8 +1,8 @@
 import React from "react";
-import male from "../../static/images/app.svg";
-import female from "../../static/images/dogwoman.svg";
+import male from "../../static/images/electronics.svg";
+import female from "../../static/images/electronics.svg";
 import "../../static/styles/weight.css";
-import {setTodaysDate} from "../../helpers/Date";
+import { setTodaysDate } from "../../helpers/Date";
 import submitForm from "../../helpers/Form";
 
 class Weight extends React.Component {
@@ -15,7 +15,8 @@ class Weight extends React.Component {
       currentWeight: 190,
       weight: 190,
       isMale: true,
-      date
+      date,
+      message: ""
     };
   }
 
@@ -51,36 +52,41 @@ class Weight extends React.Component {
     return (
       <main id="weight">
         <div id="currentWeight">
-          <h3 id="currentGoalWeight">Goal Weight: {this.state.goalWeight} lbs </h3>
-          <h3 id="currentWeightHeading"> Current Weight:{this.state.currentWeight} lbs </h3>
+          <h3 id="currentGoalWeight">Goal Weight: {this.state.goalWeight} kg </h3>
+          <h3 id="currentWeightHeading"> Current Weight: {this.state.currentWeight} kg </h3>
         </div>
 
-        <form onSubmit={async (e) => await submitForm(
-          e,
-          "POST",
-          `/weight/date/${this.state.date}`,
-          { 'Content-Type': 'application/json' },
-          false,
-          "/weight",
-          this.props.history,
-          {weight: this.state.weight},
-          this.updateErrors,
-          (result) => {
-            this.setState({currentWeight:this.state.weight})
-          }
-        )}
-              id="newWeightContainer">
+        <form onSubmit={async (e) => {
+          await submitForm(
+            e,
+            "POST",
+            `/weight/date/${this.state.date}`,
+            { 'Content-Type': 'application/json' },
+            false,
+            "/weight",
+            this.props.history,
+            { weight: this.state.weight },
+            this.updateErrors,
+            (result) => {
+              this.setState({ currentWeight: this.state.weight })
+            }
+          )
+        }}
+          id="newWeightContainer">
 
 
           <div id="personContainer">
-            <h4 id="currentWeightLabel">{this.state.currentWeight} lbs</h4>
+            <h4 id="currentWeightLabel">{this.state.currentWeight} kg</h4>
             {this.isMaleFunc()}
           </div>
 
           <div id="newWeight">
+
             <label htmlFor="newWeightInput">Enter A New Weight</label>
-            <input id="newWeightInput" name="weight" onChange={(e) => this.setState({weight: e.target.value})} required type="number" step="0.1" min="90" max="700" placeholder={`${this.state.currentWeight - 5} lbs`} />
+            <input id="newWeightInput" name="weight" onChange={(e) => this.setState({ weight: e.target.value })} required type="number" step="0.1" min="40" max="350" placeholder={`${this.state.currentWeight - 5}`} />
+            
           </div>
+
           <input type="submit" value="Add Weight" id="newWeightSubmit" />
         </form>
       </main>

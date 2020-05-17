@@ -1,7 +1,9 @@
 import React from "react";
 import 'rc-slider/assets/index.css';
 import "../../static/styles/slider.css";
-import Slider from 'rc-slider';
+import SliderElement from 'rc-slider';
+const createSliderWithTooltip = SliderElement.createSliderWithTooltip;
+const Slider = createSliderWithTooltip(SliderElement);
 
 
 class CalorieSlider extends React.Component {
@@ -23,7 +25,7 @@ class CalorieSlider extends React.Component {
 
   setNull= () => {
     this.value = undefined;
-    this.state.marks = {};
+    this.setState({marks: {}});
   }
 
   changeDisabled = (disabled) => {
@@ -31,24 +33,22 @@ class CalorieSlider extends React.Component {
     this.setState({disabled});
   }
 
+  getValue = () => {
+    return this.state.value
+  }
+
   onSliderChange = (value) => {
     this.setState({value});
   }
-  onMinChange = (e) => {
-    this.setState({
-      min: +e.target.value || 0,
-    });
-  }
-  onMaxChange = (e) => {
-    this.setState({
-      max: +e.target.value || 100,
-    });
-  }
-
   render() {
+    
     return (
       <Slider value={this.state.value} min={this.state.min} max={this.state.max} step={this.state.step}
           onChange={this.onSliderChange} disabled={this.state.disabled} marks={this.state.marks} className={"slider"}
+          tipProps={{
+          placement:'top',
+          prefixCls: 'rc-slider-tooltip'
+          }} 
         />
     )
   }
