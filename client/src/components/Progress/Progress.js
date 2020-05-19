@@ -22,51 +22,27 @@ class Progress extends React.Component {
 		this.state = {
 			isAuth: false,
 			dataPoints: [
-				{ "time": 125646541321564, "weight": 61 },
-				{ "time": 184555666665666, "weight": 65 },
-				{ "time": 205465666565666, "weight": 70 },
-				{ "time": 216231154556455, "weight": 60 },
-				{ "time": 256122656656664, "weight": 65 },
-				{ "time": 262116644454445, "weight": 71 },
-				{ "time": 256122656656664, "weight": 68 },
-				{ "time": 256122656656664, "weight": 60 },
-				{ "time": 256122658656564, "weight": 66 },
-				{ "time": 256122652656664, "weight": 62 },
-				{ "time": 256122651656664, "weight": 61 },
-				{ "time": 256122656656964, "weight": 68 },
-				{ "time": 256122656650664, "weight": 67 },
+				{ date: 1589576400100, weight: 61 },
+				{ date: 1589576400000, weight: 65 }
 			]
 		};
 	}
 
-	gradientOffset() {
-		const dataMax = Math.max(...this.state.dataPoints.map((point) => point.weight));
-		const dataMin = Math.min(...this.state.dataPoints.map((point) => point.weight));
-
-		if (dataMax <= 80) {
-			return 0
-		}
-		else if (dataMin >= 80) {
-			return 1
-		}
-		else {
-			return dataMax / (dataMax - dataMin);
-		}
-	}
-
-
-
-
+	async componentDidMount() {
+		const res = await fetch("/weight/progress", { method: "POST" });
+		const weightsByDates = await res.json();
+		console.log(weightsByDates)
+		this.setState({dataPoints: weightsByDates})
+	  }
 
 	render() {
 
-		const off = this.gradientOffset();
 		return (
 			<ResponsiveContainer width={"95%"} height={400}>
 				<LineChart
 					width={600}
 					height={400}
-					data={this.state.dataPoints}
+					data={this.state.dataPoints.slice()}
 					margin={{ top: 100, right: 30, left: 50, bottom: 30 }}
 					scale="time"					
 					type="number"
@@ -87,7 +63,7 @@ class Progress extends React.Component {
 						</linearGradient>
 					</defs>
 
-					<XAxis dataKey="time" domain={["dataMin", "dataMax"]} tickFormatter={dateFormatter}>
+					<XAxis dataKey="date" domain={["dataMin", "dataMax"]} tickFormatter={dateFormatter}>
 						<Label
 							value={"Date"}
 							position="bottom"

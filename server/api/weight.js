@@ -42,7 +42,7 @@ router.route("/weight")
         console.log("server")
         console.log(dateWeight)
         release();
-        return res.json(json);
+        return res.json(dateWeight);
       } catch(e) {
           console.error(e); 
           return res.json(400, {errors:["Failed to find your weight."]})
